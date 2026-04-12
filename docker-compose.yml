@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  afip-middleware:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - WSAA_WSDL_URL=https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl
+      - WGES_STOCK_WSDL_URL=https://fwshomo.afip.gov.ar/wgesStockDepositosFiscales/WgesStockDepositosFiscalesService?wsdl
+      - AFIP_CERT_PATH=/app/certs/cert.crt
+      - AFIP_KEY_PATH=/app/certs/private.key
+      - AFIP_CUIT=20123456789
+    volumes:
+      - .:/app

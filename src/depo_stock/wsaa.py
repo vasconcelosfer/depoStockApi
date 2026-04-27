@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 _WSAA_WSDL_TESTING = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl"
 _WSAA_WSDL_PRODUCTION = "https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl"
-_SERVICE_NAME = "wgesStockDepositosFiscales"
+_SERVICE_NAME = "wgesstockdepositosfiscales"
 _REFRESH_MARGIN = timedelta(hours=2)
 
 
@@ -108,7 +108,7 @@ class WSAAClient:
                 pkcs7.PKCS7SignatureBuilder()
                 .set_data(tra.encode("utf-8"))
                 .add_signer(cert, key, hashes.SHA256())
-                .sign(serialization.Encoding.DER, [pkcs7.PKCS7Options.DetachedSignature])
+                .sign(serialization.Encoding.DER, [])
             )
             return base64.b64encode(signed_der).decode("ascii")
         except Exception as exc:
